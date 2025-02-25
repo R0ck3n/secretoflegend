@@ -8,7 +8,11 @@ abstract class Character {
         setName(_name);
     }
 
-    abstract String getName();
+    public String getName() {
+        return name;
+    }
 
-    abstract void setName(String name);
+    public void setName(String name) {
+        this.name = name;
+    }
 }
