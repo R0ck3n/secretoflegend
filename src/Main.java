@@ -1,3 +1,4 @@
+import classes.Weapons.Sword;
 import classes.combatClass.Warrior;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -14,14 +15,15 @@ public class Main {
         System.out.println("3. Mage");
         int classChoice = sc.nextInt();
 
-        if (classChoice < 4 && classChoice > 0) {System.out.print("Entrez le nom du personnage : ");
+        if (classChoice < 4 && classChoice > 0) {
+            System.out.print("Entrez le nom du personnage : ");
         }
         switch (classChoice) {
             case 1:
                 // Création d'un Guerrier
                 String name = sc.next();
                 try {
-                    Warrior warrior = new Warrior(name);
+                    Warrior warrior = new Warrior(name, 10000, "rage", new Sword(), 1000, 1000);
                     System.out.println("Character name: " + warrior.getName());
                 } catch (IllegalArgumentException e) {
                     System.out.println("Erreur : " + e.getMessage());
