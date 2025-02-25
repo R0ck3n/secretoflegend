@@ -1,4 +1,4 @@
-package classes.Weapons;
+package classes.weapons;
 
 import interfaces.IWarriorWeapon;
 import java.util.ArrayList;

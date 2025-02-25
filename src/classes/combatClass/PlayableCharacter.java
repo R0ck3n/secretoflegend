@@ -1,5 +1,5 @@
 package classes.combatClass;
-import classes.Weapons.Weapon;
+import classes.weapons.Weapon;
 import interfaces.IWeapon;
 
 abstract class PlayableCharacter {

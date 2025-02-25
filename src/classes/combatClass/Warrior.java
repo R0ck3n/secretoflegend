@@ -1,8 +1,8 @@
 package classes.combatClass;
 
-import classes.Weapons.Weapon;
+import classes.weapons.Weapon;
 import interfaces.IAttacker;
-import interfaces.IWarriorWeapon;
+
 
 public class Warrior extends PlayableCharacter implements IAttacker {
 
