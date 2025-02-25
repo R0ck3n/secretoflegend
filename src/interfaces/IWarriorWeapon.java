@@ -1,4 +1,4 @@
 package interfaces;
 
-public interface IWarriorWeapon {
+public interface IWarriorWeapon extends IWeapon {
 }

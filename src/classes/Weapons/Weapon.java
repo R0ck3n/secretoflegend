@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public abstract class Weapon {
     protected String name;
     protected String type;
+    protected String range;
     protected Integer physical_damage;
     protected Integer magical_damage;
     protected ArrayList<String> allowed_class;
@@ -47,5 +48,23 @@ public abstract class Weapon {
 
     public void setAllowedClass(ArrayList<String> allowed_class) {
         this.allowed_class = allowed_class;
+    }
+
+    public void setRange(String range) {
+        this.range = range;
+    }
+    public String getRange() {
+        return range;
+    }
+
+    public void  getWeaponInfo() {
+        System.out.println("                  ----------");
+        System.out.println("       Nom : " + getName());
+        System.out.println("       Type : " + getType());
+        System.out.println("       Range : " + getRange());
+        System.out.println("       Physical damage : " + getPhysicalDamage());
+        System.out.println("       Magical damage : " + getMagicalDamage());
+        System.out.println("       Allowed class : " + getAllowedClass());
+        System.out.println("                  ----------");
     }
 }
