@@ -2,14 +2,14 @@ package classes.combatClass;
 
 import classes.weapons.Weapon;
 import interfaces.IAttacker;
-import interfaces.IWarriorWeapon;
+import interfaces.IMageWeapon;
 import interfaces.IWeapon;
 
 
-public class Warrior extends PlayableCharacter implements IAttacker {
+public class Mage extends PlayableCharacter implements IAttacker {
 
-    public Warrior(String name, int health, int resourceQuantity, int baseAttack) {
-        super(name, "Guerrier", health, "Rage", resourceQuantity, baseAttack);
+    public Mage(String name, int health, int resourceQuantity, int baseAttack) {
+        super(name,"Mage", health, "Mana", resourceQuantity, baseAttack);
     }
 
     @Override
@@ -21,14 +21,14 @@ public class Warrior extends PlayableCharacter implements IAttacker {
 
     @Override
     public void setWeapon(IWeapon weapon) {
-        if (weapon instanceof IWarriorWeapon) {
+        if (weapon instanceof IMageWeapon) {
             this.weapon = weapon;
         } else {
-            System.out.println("Un guerrier ne peut équiper que des armes de sa classe !");
+            System.out.println("Un mage ne peut équiper que des armes de sa classe !");
         }
     }
 
-    public void setWeapon(IWarriorWeapon weapon) {
+    public void setWeapon(IMageWeapon weapon) {
         this.weapon = weapon;
     }
 

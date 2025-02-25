@@ -4,26 +4,22 @@ import interfaces.IWeapon;
 
 abstract class PlayableCharacter {
     protected String name;
+    protected String playerClass;
     protected Integer health;
     protected String resourceType;
     protected Integer resourceQuantity;
     protected IWeapon weapon;
     protected Integer baseAttack;
 
-    protected PlayableCharacter(String name, int health, String resourceType, int resourceQuantity, int baseAttack) {
+    protected PlayableCharacter(String name, String playerClass, int health, String resourceType, int resourceQuantity, int baseAttack) {
         this.setName(name);
+        this.setPlayerClass(playerClass);
         this.setHealth(health);
         this.setResourceType(resourceType);
         this.setResourceQuantity(resourceQuantity);
         this.setBaseAttack(baseAttack);
 
     }
-
-    public void equipWeapon( IWeapon weapon) {
-        this.setWeapon(weapon);
-    }
-
-
 
     public String getName() {
         return name;
@@ -69,13 +65,20 @@ abstract class PlayableCharacter {
         return weapon;
     }
 
-    public void setWeapon(IWeapon weapon) {
-        this.weapon = weapon;
+    abstract void setWeapon(IWeapon weapon);
+
+    public void setPlayerClass(String playerClass) {
+        this.playerClass = playerClass;
+    }
+
+    public String getPlayerClass() {
+        return playerClass;
     }
 
     public void getPlayerInfo() {
         System.out.println("--------------------------------");
         System.out.println("Nom : " + getName());
+        System.out.println("Classe : " + getPlayerClass());
         System.out.println("Santé : " + getHealth());
         System.out.println("Type de ressource : " + getResourceType());
         System.out.println("Quantité de ressource : " + getResourceQuantity());
