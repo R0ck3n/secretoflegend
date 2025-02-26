@@ -1,185 +1,84 @@
 package classes.combatClass;
 
-import java.util.Scanner;
-
-import classes.weapons.Axe;
-import classes.weapons.Bow;
-import classes.weapons.Crossbow;
-import classes.weapons.Staff;
-import classes.weapons.Sword;
-import classes.weapons.Wand;
 import classes.weapons.Weapon;
+import enums.CharacterClass;
 import interfaces.IWeapon;
 
 public abstract class PlayableCharacter {
     protected String name;
-    protected String playerClass;
-    protected Integer health;
+    protected CharacterClass playerClass;
+    protected int health;
     protected String resourceType;
-    protected Integer resourceQuantity;
+    protected int resourceQuantity;
     protected IWeapon weapon;
-    protected Integer baseAttack;
+    protected int baseAttack;
 
-    public static PlayableCharacter playerCreation() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Sélectionner la classe du personnage :");
-        System.out.println("1. Guerrier");
-        System.out.println("2. Archer");
-        System.out.println("3. Mage");
-
-        int classeChoice;
-        do {
-            System.out.print("Votre choix : ");
-            while (!scanner.hasNextInt()) {
-                System.out.println("Veuillez entrer un nombre valide.");
-                scanner.next();
-            }
-            classeChoice = scanner.nextInt();
-        } while (classeChoice < 1 || classeChoice > 3);
-
-        scanner.nextLine();
-
-        System.out.print("Sélectionner le nom du personnage : ");
-        String charName = scanner.nextLine();
-
-        PlayableCharacter player = null;
-
-        switch (classeChoice) {
-            case 1:
-                player = new Warrior(charName, 100, 50, 20);
-                System.out.println("Select a weapon : ");
-                System.out.println("1. Hâche");
-                System.out.println("2. Epée");
-                break;
-            case 2:
-                player = new Archer(charName, 75, 50, 20);
-                System.out.println("Select a weapon : ");
-                System.out.println("1. Arc");
-                System.out.println("2. Arbalète");
-                break;
-            case 3:
-                player = new Mage(charName, 50, 200, 100);
-                System.out.println("Select a weapon : ");
-                System.out.println("1. Baguette");
-                System.out.println("2. Baton");
-                break;
-        }
-
-        int selectedWeapon;
-        do {
-            System.out.print("Votre choix : ");
-            while (!scanner.hasNextInt()) {
-                System.out.println("Veuillez entrer un nombre valide.");
-                scanner.next();
-            }
-            selectedWeapon = scanner.nextInt();
-        } while (selectedWeapon < 1 || selectedWeapon > 2);
-
-        if (player != null) {
-            IWeapon weapon = null;
-            switch (classeChoice) {
-                case 1:
-                    weapon = (selectedWeapon == 1) ? new Axe("Big Axe", 100) : new Sword("Big Sword", 100);
-                    break;
-                case 2:
-                    weapon = (selectedWeapon == 1) ? new Bow("Basic Bow", 50) : new Crossbow("Basic Crossbow", 70);
-                    break;
-                case 3:
-                    weapon = (selectedWeapon == 1) ? new Wand("Basic Wand", 100) : new Staff("Basic Staff", 110);
-                    break;
-            }
-            player.setWeapon(weapon);
-        }
-
-        System.out.println("\nPersonnage créé avec succès !");
-        return player;
-    }
-
-    protected PlayableCharacter(String name, String playerClass, int health, String resourceType, int resourceQuantity,
-            int baseAttack) {
-        this.setName(name);
-        this.setPlayerClass(playerClass);
-        this.setHealth(health);
-        this.setResourceType(resourceType);
-        this.setResourceQuantity(resourceQuantity);
-        this.setBaseAttack(baseAttack);
-
+    protected PlayableCharacter(String name, CharacterClass playerClass, int health, String resourceType,
+            int resourceQuantity, int baseAttack) {
+        this.name = name;
+        this.playerClass = playerClass;
+        this.health = Math.max(health, 0);
+        this.resourceType = resourceType;
+        this.resourceQuantity = Math.max(resourceQuantity, 0);
+        this.baseAttack = Math.max(baseAttack, 0);
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name != null && !name.isEmpty() ? name : "Unknown";
+    public CharacterClass getPlayerClass() {
+        return playerClass;
     }
 
     public int getHealth() {
         return health;
     }
 
-    public void setHealth(int health) {
-        this.health = Math.max(health, 0);
-    }
-
     public String getResourceType() {
         return resourceType;
-    }
-
-    public void setResourceType(String resourceType) {
-        this.resourceType = resourceType != null && !resourceType.isEmpty() ? resourceType : "None";
     }
 
     public int getResourceQuantity() {
         return resourceQuantity;
     }
 
-    public void setResourceQuantity(int resourceQuantity) {
-        this.resourceQuantity = Math.max(resourceQuantity, 0);
+    public IWeapon getWeapon() {
+        return weapon;
     }
 
     public int getBaseAttack() {
         return baseAttack;
     }
 
-    public void setBaseAttack(int baseAttack) {
-        this.baseAttack = Math.max(baseAttack, 0);
+    public void setHealth(int health) {
+        this.health = Math.max(health, 0);
     }
 
-    public IWeapon getWeapon() {
-        return weapon;
+    public void setResourceQuantity(int resourceQuantity) {
+        this.resourceQuantity = Math.max(resourceQuantity, 0);
     }
 
-    abstract void setWeapon(IWeapon weapon);
-
-    public void setPlayerClass(String playerClass) {
-        this.playerClass = playerClass;
+    public void setWeapon(IWeapon weapon) {
+        this.weapon = weapon;
     }
 
-    public String getPlayerClass() {
-        return playerClass;
-    }
+    public abstract void setName(String name);
 
-    public void getPlayerInfo() {
+    public void displayInfo() {
         System.out.println("--------------------------------");
-        System.out.println("Nom : " + getName());
-        System.out.println("Classe : " + getPlayerClass());
-        System.out.println("Santé : " + getHealth());
-        System.out.println("Type de ressource : " + getResourceType());
-        System.out.println("Quantité de ressource : " + getResourceQuantity());
-        System.out.println("Attaque de base : " + getBaseAttack());
-
-        if (weapon != null) {
-            System.out.println("Arme équipée : ");
-            if (weapon instanceof Weapon) {
-                ((Weapon) weapon).getWeaponInfo();
-            }
+        System.out.println("Nom : " + name);
+        System.out.println("Classe : " + playerClass);
+        System.out.println("Santé : " + health);
+        System.out.println("Type de ressource : " + resourceType);
+        System.out.println("Quantité de ressource : " + resourceQuantity);
+        System.out.println("Attaque de base : " + baseAttack);
+        if (weapon instanceof Weapon) {
+            System.out.print("Arme équipée : ");
+            ((Weapon) weapon).getWeaponInfo();
         } else {
-            System.out.println("Aucune arme équipée.");
+            System.out.println("Arme équipée : Aucune");
         }
-
         System.out.println("--------------------------------");
     }
-
 }
