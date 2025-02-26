@@ -1,13 +1,9 @@
 import classes.Utils;
 import classes.combatClass.Archer;
 import classes.combatClass.Mage;
-import classes.weapons.Axe;
+import classes.combatClass.PlayableCharacter;
 import classes.combatClass.Warrior;
-import classes.weapons.Bow;
-import classes.weapons.Wand;
-import interfaces.IArcherWeapon;
-import interfaces.IMageWeapon;
-import interfaces.IWarriorWeapon;
+
 
 import java.util.Scanner;
 
@@ -15,6 +11,7 @@ public class Main {
     public static void main(String[] args) {
 
         Utils utils = new Utils();
+        PlayableCharacter player1 = null;
         int turn = 0 ;
 
         utils.displayTitle();
@@ -32,24 +29,30 @@ public class Main {
         String charName = strScanner.next();
 
 
-        IWarriorWeapon axe = new Axe("Battle Axe", 50);
-        Warrior warrior = new Warrior("Conan", 100,50, 20);
-        warrior.setWeapon(axe);
-        warrior.getPlayerInfo();
+        switch (classeChoice) {
+            case 1:
+                player1 = new Warrior(charName, 100,50, 20);
+                break;
+            case 2:
+                player1 = new Archer(charName, 75,50, 20);
+                break;
+            case 3:
+                 player1 = new Mage(charName, 50, 200, 100);
+                 break;
+            default:
+                  System.out.println("mauvais choix de classe");
+                  System.exit(0);
+                  break;
+        }
 
-        IArcherWeapon bow = new Bow("Battle Bow", 70, 10);
-        Archer archer = new Archer("Robin", 75,50, 20);
-        archer.setWeapon(bow);
-        archer.getPlayerInfo();
-
-        IMageWeapon wand = new Wand("Baguette moisie", 45);
-        Mage mage = new Mage("Harry", 50, 200, 100);
-        mage.setWeapon(wand);
-        mage.getPlayerInfo();
+        if (player1 != null) {
+            player1.getPlayerInfo();
+        }
 
 
 
-    intScanner.close();
+
+        intScanner.close();
     strScanner.close();
 
 

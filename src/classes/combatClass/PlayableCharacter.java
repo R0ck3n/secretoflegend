@@ -2,7 +2,7 @@ package classes.combatClass;
 import classes.weapons.Weapon;
 import interfaces.IWeapon;
 
-abstract class PlayableCharacter {
+public abstract class PlayableCharacter {
     protected String name;
     protected String playerClass;
     protected Integer health;
