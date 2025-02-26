@@ -1,10 +1,5 @@
 import classes.Utils;
-import classes.combatClass.Archer;
-import classes.combatClass.Mage;
 import classes.combatClass.PlayableCharacter;
-import classes.combatClass.Warrior;
-
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
