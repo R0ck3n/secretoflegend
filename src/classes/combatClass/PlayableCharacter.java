@@ -1,4 +1,13 @@
 package classes.combatClass;
+
+import java.util.Scanner;
+
+import classes.weapons.Axe;
+import classes.weapons.Bow;
+import classes.weapons.Crossbow;
+import classes.weapons.Staff;
+import classes.weapons.Sword;
+import classes.weapons.Wand;
 import classes.weapons.Weapon;
 import interfaces.IWeapon;
 
@@ -11,7 +20,84 @@ public abstract class PlayableCharacter {
     protected IWeapon weapon;
     protected Integer baseAttack;
 
-    protected PlayableCharacter(String name, String playerClass, int health, String resourceType, int resourceQuantity, int baseAttack) {
+    public static PlayableCharacter playerCreation() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Sélectionner la classe du personnage :");
+        System.out.println("1. Guerrier");
+        System.out.println("2. Archer");
+        System.out.println("3. Mage");
+
+        int classeChoice;
+        do {
+            System.out.print("Votre choix : ");
+            while (!scanner.hasNextInt()) {
+                System.out.println("Veuillez entrer un nombre valide.");
+                scanner.next();
+            }
+            classeChoice = scanner.nextInt();
+        } while (classeChoice < 1 || classeChoice > 3);
+
+        scanner.nextLine();
+
+        System.out.print("Sélectionner le nom du personnage : ");
+        String charName = scanner.nextLine();
+
+        PlayableCharacter player = null;
+
+        switch (classeChoice) {
+            case 1:
+                player = new Warrior(charName, 100, 50, 20);
+                System.out.println("Select a weapon : ");
+                System.out.println("1. Hâche");
+                System.out.println("2. Epée");
+                break;
+            case 2:
+                player = new Archer(charName, 75, 50, 20);
+                System.out.println("Select a weapon : ");
+                System.out.println("1. Arc");
+                System.out.println("2. Arbalète");
+                break;
+            case 3:
+                player = new Mage(charName, 50, 200, 100);
+                System.out.println("Select a weapon : ");
+                System.out.println("1. Baguette");
+                System.out.println("2. Baton");
+                break;
+        }
+
+        int selectedWeapon;
+        do {
+            System.out.print("Votre choix : ");
+            while (!scanner.hasNextInt()) {
+                System.out.println("Veuillez entrer un nombre valide.");
+                scanner.next();
+            }
+            selectedWeapon = scanner.nextInt();
+        } while (selectedWeapon < 1 || selectedWeapon > 2);
+
+        if (player != null) {
+            IWeapon weapon = null;
+            switch (classeChoice) {
+                case 1:
+                    weapon = (selectedWeapon == 1) ? new Axe("Big Axe", 100) : new Sword("Big Sword", 100);
+                    break;
+                case 2:
+                    weapon = (selectedWeapon == 1) ? new Bow("Basic Bow", 50) : new Crossbow("Basic Crossbow", 70);
+                    break;
+                case 3:
+                    weapon = (selectedWeapon == 1) ? new Wand("Basic Wand", 100) : new Staff("Basic Staff", 110);
+                    break;
+            }
+            player.setWeapon(weapon);
+        }
+
+        System.out.println("\nPersonnage créé avec succès !");
+        return player;
+    }
+
+    protected PlayableCharacter(String name, String playerClass, int health, String resourceType, int resourceQuantity,
+            int baseAttack) {
         this.setName(name);
         this.setPlayerClass(playerClass);
         this.setHealth(health);
@@ -95,6 +181,5 @@ public abstract class PlayableCharacter {
 
         System.out.println("--------------------------------");
     }
-
 
 }
