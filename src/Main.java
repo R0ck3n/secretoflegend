@@ -1,3 +1,4 @@
+import classes.Utils;
 import classes.combatClass.Archer;
 import classes.combatClass.Mage;
 import classes.weapons.Axe;
@@ -8,8 +9,28 @@ import interfaces.IArcherWeapon;
 import interfaces.IMageWeapon;
 import interfaces.IWarriorWeapon;
 
+import java.util.Scanner;
+
 public class Main {
-    public static void main(String[] args) { // Ajout de la méthode main
+    public static void main(String[] args) {
+
+        Utils utils = new Utils();
+        int turn = 0 ;
+
+        utils.displayTitle();
+        Scanner intScanner = new Scanner(System.in);
+        Scanner strScanner = new Scanner(System.in);
+
+        System.out.println("Sélectionner la classe du  le 1er personnage :");
+
+        System.out.println("1. Guerrier");
+        System.out.println("2. Archer");
+        System.out.println("3. Mage");
+        int classeChoice = intScanner.nextInt();
+
+        System.out.println("Sélectionner le nom du personnage :");
+        String charName = strScanner.next();
+
 
         IWarriorWeapon axe = new Axe("Battle Axe", 50);
         Warrior warrior = new Warrior("Conan", 100,50, 20);
@@ -26,6 +47,12 @@ public class Main {
         mage.setWeapon(wand);
         mage.getPlayerInfo();
 
-        
+
+
+    intScanner.close();
+    strScanner.close();
+
+
+
     }
 }

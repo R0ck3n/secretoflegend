@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Axe extends Weapon implements IWarriorWeapon {
-    public Axe(String name, int physicalDamage, int magicDamage) {
+    public Axe(String name, int physicalDamage, int magicDamage ) {
         setName(name);
         setType("Axe");
         setRange("Melee");
