@@ -2,6 +2,7 @@ package classes.game;
 
 import java.util.Scanner;
 
+import classes.Utils;
 import classes.combatClass.PlayableCharacter;
 import classes.factory.CharacterFactory;
 import classes.factory.WeaponFactory;
@@ -13,6 +14,10 @@ public class GameManager {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void startGame() {
+
+        Utils utils = new Utils();
+        utils.displayTitle();
+
         System.out.println("=== Création des personnages ===");
         System.out.println("CREATION DU PREMIER PERSONNAGE");
         PlayableCharacter player1 = createPlayer();
