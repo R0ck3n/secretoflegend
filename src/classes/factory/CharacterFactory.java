@@ -14,9 +14,9 @@ public class CharacterFactory {
     private static final Map<CharacterClass, BiFunction<String, CharacterClass, PlayableCharacter>> characterMap = new HashMap<>();
 
     static {
-        characterMap.put(CharacterClass.WARRIOR, (name, characterClass) -> new Warrior(name, 100, 50, 20));
-        characterMap.put(CharacterClass.ARCHER, (name, characterClass) -> new Archer(name, characterClass, 100, 100, 100));
-        characterMap.put(CharacterClass.MAGE, (name, characterClass) -> new Mage(name, 100, 50, 200));
+        characterMap.put(CharacterClass.WARRIOR, (name, characterClass) -> new Warrior(name, 1000, 50, 20));
+        characterMap.put(CharacterClass.ARCHER, (name, characterClass) -> new Archer(name, characterClass, 1000, 100, 100));
+        characterMap.put(CharacterClass.MAGE, (name, characterClass) -> new Mage(name, 1000, 50, 200));
     }
 
     public static PlayableCharacter createCharacter(CharacterClass characterClass, String name) {
