@@ -10,7 +10,7 @@ public class Archer extends PlayableCharacter implements IAttacker {
 
     public Archer(String name, CharacterClass playerClass, int health, int resourceQuantity,
             int baseAttack) {
-        super(name, CharacterClass.ARCHER, health, "Energy", resourceQuantity, baseAttack);
+        super(name, playerClass, health, "Energy", resourceQuantity, baseAttack);
     }
 
     @Override
